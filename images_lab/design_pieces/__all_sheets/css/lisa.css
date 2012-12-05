@@ -1,0 +1,48 @@
+.sprite-lisa-photo-shadow-mask,
+.sprite-lisa-photo-shadow-image,
+.sprite-lisa-balloon-five-oclock-mask,
+.sprite-lisa-balloon-five-oclock-image,
+.sprite-lisa-balloon-two-oclock-mask,
+.sprite-lisa-balloon-two-oclock-image,
+.sprite-lisa-loser-mask,
+.sprite-lisa-loser-image,
+.sprite-lisa-smelling-mask,
+.sprite-lisa-smelling-image,
+.sprite-lisa-party-mask,
+.sprite-lisa-party-image,
+.sprite-lisa-yawning-mask,
+.sprite-lisa-yawning-image,
+.sprite-lisa-kiss-mask,
+.sprite-lisa-kiss-image,
+.sprite-lisa-balloon-one-oclock-mask,
+.sprite-lisa-balloon-one-oclock-image,
+.sprite-lisa-balloon-nine-oclock-mask,
+.sprite-lisa-balloon-nine-oclock-image,
+.sprite-lisa-forward-arrow2x-mask,
+.sprite-lisa-forward-arrow2x-image,
+.sprite-lisa-back-arrow2x-mask,
+.sprite-lisa-back-arrow2x-image{background-image:url('lisa.png');background-repeat:no-repeat}
+.sprite-lisa-photo-shadow-mask{background-position:0px 0px;width:233px;height:280px;}
+.sprite-lisa-photo-shadow-image{background-position:-233px 0px;width:233px;height:280px;}
+.sprite-lisa-balloon-five-oclock-mask{background-position:-466px 0px;width:251px;height:204px;}
+.sprite-lisa-balloon-five-oclock-image{background-position:0px -280px;width:251px;height:204px;}
+.sprite-lisa-balloon-two-oclock-mask{background-position:-717px 0px;width:241px;height:244px;}
+.sprite-lisa-balloon-two-oclock-image{background-position:0px -484px;width:241px;height:244px;}
+.sprite-lisa-loser-mask{background-position:-717px -244px;width:188px;height:235px;}
+.sprite-lisa-loser-image{background-position:-241px -484px;width:188px;height:235px;}
+.sprite-lisa-smelling-mask{background-position:-429px -484px;width:185px;height:233px;}
+.sprite-lisa-smelling-image{background-position:-614px -484px;width:185px;height:233px;}
+.sprite-lisa-party-mask{background-position:-958px 0px;width:181px;height:232px;}
+.sprite-lisa-party-image{background-position:-958px -232px;width:181px;height:232px;}
+.sprite-lisa-yawning-mask{background-position:-958px -464px;width:177px;height:227px;}
+.sprite-lisa-yawning-image{background-position:0px -728px;width:177px;height:227px;}
+.sprite-lisa-kiss-mask{background-position:-177px -728px;width:179px;height:226px;}
+.sprite-lisa-kiss-image{background-position:-356px -728px;width:179px;height:226px;}
+.sprite-lisa-balloon-one-oclock-mask{background-position:-535px -728px;width:210px;height:213px;}
+.sprite-lisa-balloon-one-oclock-image{background-position:-745px -728px;width:210px;height:213px;}
+.sprite-lisa-balloon-nine-oclock-mask{background-position:-251px -280px;width:200px;height:180px;}
+.sprite-lisa-balloon-nine-oclock-image{background-position:-451px -280px;width:200px;height:180px;}
+.sprite-lisa-forward-arrow2x-mask{background-position:0px -955px;width:192px;height:84px;}
+.sprite-lisa-forward-arrow2x-image{background-position:-192px -955px;width:192px;height:84px;}
+.sprite-lisa-back-arrow2x-mask{background-position:-384px -955px;width:192px;height:84px;}
+.sprite-lisa-back-arrow2x-image{background-position:-576px -955px;width:192px;height:84px;}

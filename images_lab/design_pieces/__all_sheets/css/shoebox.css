@@ -1,0 +1,12 @@
+.sprite-shoebox-shadow-mask,
+.sprite-shoebox-shadow-image,
+.sprite-shoebox-lid-mask,
+.sprite-shoebox-lid-image,
+.sprite-shoebox-box-mask,
+.sprite-shoebox-box-image{background-image:url('shoebox.png');background-repeat:no-repeat}
+.sprite-shoebox-shadow-mask{background-position:0px 0px;width:740px;height:450px;}
+.sprite-shoebox-shadow-image{background-position:-740px 0px;width:740px;height:450px;}
+.sprite-shoebox-lid-mask{background-position:0px -450px;width:740px;height:420px;}
+.sprite-shoebox-lid-image{background-position:-740px -450px;width:740px;height:420px;}
+.sprite-shoebox-box-mask{background-position:0px -870px;width:740px;height:480px;}
+.sprite-shoebox-box-image{background-position:-740px -870px;width:740px;height:480px;}

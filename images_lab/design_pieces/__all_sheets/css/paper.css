@@ -1,0 +1,52 @@
+.sprite-paper-cardboard-nomask,
+.sprite-paper-white-paper-nomask,
+.sprite-paper-facebook-button-up2x-mask,
+.sprite-paper-facebook-button-up2x-image,
+.sprite-paper-facebook-button-down2x-mask,
+.sprite-paper-facebook-button-down2x-image,
+.sprite-paper-shoe2x-mask,
+.sprite-paper-shoe2x-image,
+.sprite-paper-row_highlight2x-mask,
+.sprite-paper-row_highlight2x-image,
+.sprite-paper-barcode2x-mask,
+.sprite-paper-barcode2x-image,
+.sprite-paper-yellow-button-up2x-mask,
+.sprite-paper-yellow-button-up2x-image,
+.sprite-paper-yellow-button-down2x-mask,
+.sprite-paper-yellow-button-down2x-image,
+.sprite-paper-recycle2x-mask,
+.sprite-paper-recycle2x-image,
+.sprite-paper-scissors-mask,
+.sprite-paper-scissors-image,
+.sprite-paper-up-arrow-mask,
+.sprite-paper-up-arrow-image,
+.sprite-paper-check2x-mask,
+.sprite-paper-check2x-image,
+.sprite-paper-arrow2x-mask,
+.sprite-paper-arrow2x-image{background-image:url('paper.png');background-repeat:no-repeat}
+.sprite-paper-cardboard-nomask{background-position:0px 0px;width:672px;height:384px;}
+.sprite-paper-white-paper-nomask{background-position:0px -384px;width:645px;height:256px;}
+.sprite-paper-facebook-button-up2x-mask{background-position:-672px 0px;width:488px;height:112px;}
+.sprite-paper-facebook-button-up2x-image{background-position:-672px -112px;width:488px;height:112px;}
+.sprite-paper-facebook-button-down2x-mask{background-position:-672px -224px;width:488px;height:112px;}
+.sprite-paper-facebook-button-down2x-image{background-position:-672px -336px;width:488px;height:112px;}
+.sprite-paper-shoe2x-mask{background-position:-672px -448px;width:480px;height:140px;}
+.sprite-paper-shoe2x-image{background-position:0px -640px;width:480px;height:140px;}
+.sprite-paper-row_highlight2x-mask{background-position:-480px -640px;width:480px;height:70px;}
+.sprite-paper-row_highlight2x-image{background-position:-480px -710px;width:480px;height:70px;}
+.sprite-paper-barcode2x-mask{background-position:0px -780px;width:480px;height:140px;}
+.sprite-paper-barcode2x-image{background-position:-480px -780px;width:480px;height:140px;}
+.sprite-paper-yellow-button-up2x-mask{background-position:0px -920px;width:446px;height:74px;}
+.sprite-paper-yellow-button-up2x-image{background-position:-446px -920px;width:446px;height:74px;}
+.sprite-paper-yellow-button-down2x-mask{background-position:0px -994px;width:446px;height:72px;}
+.sprite-paper-yellow-button-down2x-image{background-position:-446px -994px;width:446px;height:72px;}
+.sprite-paper-recycle2x-mask{background-position:-960px -780px;width:132px;height:132px;}
+.sprite-paper-recycle2x-image{background-position:-1160px 0px;width:132px;height:132px;}
+.sprite-paper-scissors-mask{background-position:-1160px -132px;width:75px;height:51px;}
+.sprite-paper-scissors-image{background-position:-1160px -183px;width:75px;height:51px;}
+.sprite-paper-up-arrow-mask{background-position:-1160px -234px;width:61px;height:71px;}
+.sprite-paper-up-arrow-image{background-position:-1221px -234px;width:61px;height:71px;}
+.sprite-paper-check2x-mask{background-position:-1235px -132px;width:44px;height:44px;}
+.sprite-paper-check2x-image{background-position:-1235px -183px;width:44px;height:44px;}
+.sprite-paper-arrow2x-mask{background-position:-1160px -305px;width:44px;height:44px;}
+.sprite-paper-arrow2x-image{background-position:-1204px -305px;width:44px;height:44px;}

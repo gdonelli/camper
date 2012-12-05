@@ -1,0 +1,40 @@
+.sprite-content-photos-pile-top-mask,
+.sprite-content-photos-pile-top-image,
+.sprite-content-photos-pile-bottom-mask,
+.sprite-content-photos-pile-bottom-image,
+.sprite-content-notepad-message-mask,
+.sprite-content-notepad-message-image,
+.sprite-content-magic-pocket-mask,
+.sprite-content-magic-pocket-image,
+.sprite-content-corner-photo-mask,
+.sprite-content-corner-photo-image,
+.sprite-content-yellow-button-small-up2x-mask,
+.sprite-content-yellow-button-small-up2x-image,
+.sprite-content-yellow-button-small-down2x-mask,
+.sprite-content-yellow-button-small-down2x-image,
+.sprite-content-white-button-small-up2x-mask,
+.sprite-content-white-button-small-up2x-image,
+.sprite-content-white-button-small-down2x-mask,
+.sprite-content-white-button-small-down2x-image,
+.sprite-content-corner-photo-arrow2x-mask,
+.sprite-content-corner-photo-arrow2x-image{background-image:url('content.png');background-repeat:no-repeat}
+.sprite-content-photos-pile-top-mask{background-position:0px 0px;width:311px;height:356px;}
+.sprite-content-photos-pile-top-image{background-position:-311px 0px;width:311px;height:356px;}
+.sprite-content-photos-pile-bottom-mask{background-position:-622px 0px;width:311px;height:356px;}
+.sprite-content-photos-pile-bottom-image{background-position:0px -356px;width:311px;height:356px;}
+.sprite-content-notepad-message-mask{background-position:-311px -356px;width:291px;height:268px;}
+.sprite-content-notepad-message-image{background-position:-602px -356px;width:291px;height:268px;}
+.sprite-content-magic-pocket-mask{background-position:-893px -356px;width:12px;height:158px;}
+.sprite-content-magic-pocket-image{background-position:-905px -356px;width:12px;height:158px;}
+.sprite-content-corner-photo-mask{background-position:0px -712px;width:82px;height:158px;}
+.sprite-content-corner-photo-image{background-position:-82px -712px;width:82px;height:158px;}
+.sprite-content-yellow-button-small-up2x-mask{background-position:-311px -624px;width:146px;height:44px;}
+.sprite-content-yellow-button-small-up2x-image{background-position:-457px -624px;width:146px;height:44px;}
+.sprite-content-yellow-button-small-down2x-mask{background-position:-603px -624px;width:146px;height:44px;}
+.sprite-content-yellow-button-small-down2x-image{background-position:-749px -624px;width:146px;height:44px;}
+.sprite-content-white-button-small-up2x-mask{background-position:-311px -668px;width:146px;height:44px;}
+.sprite-content-white-button-small-up2x-image{background-position:-457px -668px;width:146px;height:44px;}
+.sprite-content-white-button-small-down2x-mask{background-position:-603px -668px;width:146px;height:44px;}
+.sprite-content-white-button-small-down2x-image{background-position:-749px -668px;width:146px;height:44px;}
+.sprite-content-corner-photo-arrow2x-mask{background-position:-893px -514px;width:34px;height:34px;}
+.sprite-content-corner-photo-arrow2x-image{background-position:-893px -548px;width:34px;height:34px;}

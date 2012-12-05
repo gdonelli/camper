@@ -1,0 +1,24 @@
+.sprite-wrap-front-shoe-mask,
+.sprite-wrap-front-shoe-image,
+.sprite-wrap-front-flap-mask,
+.sprite-wrap-front-flap-image,
+.sprite-wrap-back-shoe-mask,
+.sprite-wrap-back-shoe-image,
+.sprite-wrap-back-flap-mask,
+.sprite-wrap-back-flap-image,
+.sprite-wrap-loading-sticker-mask,
+.sprite-wrap-loading-sticker-image,
+.sprite-wrap-barcode-sticker-mask,
+.sprite-wrap-barcode-sticker-image{background-image:url('wrap.png');background-repeat:no-repeat}
+.sprite-wrap-front-shoe-mask{background-position:0px 0px;width:426px;height:454px;}
+.sprite-wrap-front-shoe-image{background-position:-426px 0px;width:426px;height:454px;}
+.sprite-wrap-front-flap-mask{background-position:-852px 0px;width:426px;height:454px;}
+.sprite-wrap-front-flap-image{background-position:0px -454px;width:426px;height:454px;}
+.sprite-wrap-back-shoe-mask{background-position:-426px -454px;width:426px;height:454px;}
+.sprite-wrap-back-shoe-image{background-position:-852px -454px;width:426px;height:454px;}
+.sprite-wrap-back-flap-mask{background-position:-1278px 0px;width:426px;height:454px;}
+.sprite-wrap-back-flap-image{background-position:-1278px -454px;width:426px;height:454px;}
+.sprite-wrap-loading-sticker-mask{background-position:0px -908px;width:246px;height:100px;}
+.sprite-wrap-loading-sticker-image{background-position:-246px -908px;width:246px;height:100px;}
+.sprite-wrap-barcode-sticker-mask{background-position:-492px -908px;width:246px;height:100px;}
+.sprite-wrap-barcode-sticker-image{background-position:-738px -908px;width:246px;height:100px;}

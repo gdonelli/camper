@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<header>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>Shoeboxify is your shoebox for Facebook</title>
+
+		<link href="sad.css" type="text/css"	rel="stylesheet" />
+
+		<script src="sad.js"></script>
+
+		<script type="text/javascript">
+			var userAgent = navigator.userAgent;
+			mixpanel.track( "sad", { "userAgent" : userAgent, "go-to" : 0 } );
+		</script>
+
+	</header>
+	
+	<body>
+
+		<div id="page">
+
+			<h1>Shoeboxify is your shoebox for Facebook</h1>
+			<h2>A private container to preserve your memories</h2>
+
+			<!-- <img src="images/pencil.jpg" alt="Gray Shoebox" height="480" width="740" /> -->
+
+			<!-- 75% zoom -->
+			<img src="images/shoebox_pencil_sad.jpg" alt="Gray Shoebox" height="360" width="555" />
+
+			<div id="yellow">
+
+				<div id="message" class="focus-box">
+					Shoeboxify it not compatible with your browser	
+				</div>
+
+				<div id="suggest" class="focus-box">
+					We suggest you use <a href="http://www.google.com/chrome">Google Chrome</a>
+					<div id="but">(Safari or Firefox too)</div>
+				</div>
+				
+			</div>
+
+			<div id="gray">
+
+				<div id="continue" class="text-box">
+					You could also try to <a href="index.html?force=1">continue</a>, but likely you won't be able to use Shoeboxify and our Art and Craftsmanship will be lost
+				</div>
+
+				<div id="feedback" class="text-box">
+					If you need help or you want to talk to us about this issue, you can send a message to:
+					<div><script>mail("feedback","shoeboxify",0,"")</script></div>
+				</div>
+
+			</div>
+
+		</div>
+		
+		<div id="designed-and-made">
+			<span class="designed">DESIGNED IN SAN FRANCISCO</span>
+			<span class="made">SHOEBOX MADE IN ITALY</span>
+		</div>
+
+	</body>
+
+</html>
+

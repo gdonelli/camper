@@ -1,0 +1,194 @@
+body
+{
+	font-size: 14px;
+
+	font-family:
+		"HelveticaNeue",
+		"Helvetica Neue",
+		"HelveticaNeueRoman",
+		"HelveticaNeue-Roman",
+		"Helvetica Neue Roman",				
+		"Trebuchet MS",
+		"Tahoma",
+
+		"Helvetica",	 	
+
+		sans-serif;
+
+	font-weight:400;
+	font-stretch:normal;
+
+	color: black;
+
+	background-color: rgb(245, 245, 245);
+
+	text-align: center;
+
+	margin:  0;
+	padding: 0;
+	border: 0;
+}
+
+#page
+{
+	width: 740px;
+	margin-left: auto;
+	margin-right: auto;
+
+
+	background-color: white;
+	text-align: center;
+
+	padding-bottom: 32px;
+}
+
+h1
+{
+	font-size: 24px;
+	font-weight:600;
+
+	padding: 24px 0 8px 0;
+
+	/*background-color: purple;*/
+
+	margin: 0;
+	border: 0;
+
+	height: 24px;
+}
+
+h2
+{
+	font-size: 16px;
+	font-weight:400;
+
+	margin: 0;
+	border: 0;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	margin-bottom: 8px;
+
+	color: #929292;
+
+}
+
+#gray,
+#yellow
+{
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+
+	height: 150px;
+}
+
+#gray
+{
+	height: 110px;	
+}
+
+.focus-box
+{
+	background-color: #fff09b;			
+	color: rgb(250, 75, 75);
+
+	border: 6px solid rgb(250, 75, 75);
+	width: 240px;
+
+	padding: 16px;
+	height: 86px;
+
+	font-size: 18px;
+	font-weight:600;
+	line-height: 28px;
+
+}
+
+
+#message
+{
+	float: left;
+}
+
+#suggest
+{
+	float: right;
+
+	font-size: 16px;
+
+	font-size: 18px;
+	font-weight: 600;
+}
+
+a
+{
+	color: #4b7cff;
+}
+
+#suggest a
+{
+	display: block;
+}
+
+#suggest #but
+{
+	/*color: #b5b8dd;*/
+
+	color: rgba(150, 150, 150, 0.75);
+
+	font-size: 13px;
+	margin-top: 2px;
+}
+
+.text-box
+{
+	color: rgb(150, 150, 150);
+
+	width: 250px;
+
+	height: 75px;
+	padding: 16px;
+
+
+	margin-left: auto;
+	margin-right: auto;
+
+
+	border: 1px solid rgb(220, 220, 220);
+
+	text-align: left;
+
+	line-height: 19px;
+	font-size: 12px;
+}
+
+#continue
+{
+	float: left;
+}
+	
+#feedback
+{
+	float: right;
+}
+
+#designed-and-made
+{
+	padding: 32px;
+}
+
+#designed-and-made span
+{
+	color: rgb(190, 190, 190);
+
+	font-size: 12px;
+	margin: 0 75px;
+}
+
+#shoebox
+{
+	margin: 16px;
+}
+

@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Shoeboxify is your shoebox for Facebook</title>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />				
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+
+		<meta name="author"			content="Giovanni Donelli" />
+		<meta name="description"	content="A private container to preserve your Facebook photos and posts" />
+		<meta name="keywords"		content="facebook, shoebox, shoeboxify, shoeboxified, photos, archive, backup, back-up, preserve, store" />
+
+
+		<meta property="og:title" content="Shoeboxify is your shoebox for Facebook" />
+		<meta property="og:description"	content="A private container to preserve your Facebook photos and posts" />
+
+		<meta property="og:type" content="company" />
+		<meta property="og:url" content="http://www.shoeboxify.com" />
+		<meta property="og:image" content="http://www.shoeboxify.com/images/shoebox.png" />
+		<meta property="og:site_name" content="Shoeboxify" />
+
+		<script> <!-- start Mixpanel -->
+
+			(function(c,a){window.mixpanel=a;var b,d,h,e;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===c.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.1.min.js';d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d);a._i=[];a.init=function(b,c,f){function d(a,b){var c=b.split(".");2==c.length&&(a=a[c[0]],b=c[1]);a[b]=function(){a.push([b].concat(Array.prototype.slice.call(arguments,0)))}}var g=a;"undefined"!==typeof f?
+			g=a[f]=[]:f="mixpanel";g.people=g.people||[];h="disable track track_pageview track_links track_forms register register_once unregister identify name_tag set_config people.identify people.set people.increment".split(" ");for(e=0;e<h.length;e++)d(g,h[e]);a._i.push([b,c,f])};a.__SV=1.1})(document,window.mixpanel||[]);
+			mixpanel.init("e758629022e3a6faaf4c9f90a2bf0114");
+		</script> <!-- end Mixpanel -->
+
+		<script>
+
+			// GET Arguments check
+			var prmstr = window.location.search.substr(1);
+			var prmarr = prmstr.split ("&");
+			var __GET = {};
+
+			for ( var i = 0; i < prmarr.length; i++) {
+			    var tmparr = prmarr[i].split("=");
+			    __GET[tmparr[0]] = tmparr[1];
+			}
+
+			var pageURL = document.location.href;
+			
+			var __debugMode = __GET["debug"];
+
+			if (__debugMode)
+				console.log(pageURL + " - DebugMode is ON");
+
+			var __isNotUfficialAddress = ( pageURL.indexOf("shoeboxify.com") == -1 );
+			if (__isNotUfficialAddress)
+				console.log(pageURL + " - Activity Tracking is turned OFF");
+			
+			function Track(anEvent, someProperties)
+			{			
+				console.log("Track: " + anEvent );
+
+				if (__isNotUfficialAddress || __debugMode)
+					return;
+	
+				if (someProperties)
+					mixpanel.track(anEvent, someProperties);
+				else
+					mixpanel.track(anEvent);
+			}
+
+		</script>
+
+		
+		<script>
+			// Browser check
+			if (__GET["force"] == undefined)
+			{
+				var userAgent = navigator.userAgent.toLowerCase();
+				var validBrowser = (userAgent.indexOf("mozilla") != -1 ||
+									userAgent.indexOf("webkit") != -1  ||
+									userAgent.indexOf("Gecko") != -1)  && 
+									userAgent.indexOf("msie") == -1 ;
+
+				if (!validBrowser) 
+				{
+					Track("sad", { "go-to" : 1 } );
+
+					setTimeout(
+						function() {
+							document.location = "sad.html";		 		
+					 	}, 100);
+				}
+			}
+
+		</script>
+		
+		<link href="index.css"	type="text/css"	rel="stylesheet" />
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		
+		<!-- <script src="js/jquery172.min.js"></script> -->
+		<script src="index.js">	</script>
+		<script src="js/ScalableCanvasLayout.js"></script>
+		<script src="js/jquery.transit.js"></script>
+
+
+		<!-- Google Analytics -->
+
+		<script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-35256344-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>
+
+	</head>
+	
+	<body>
+		<script>
+			$("body").ready(
+					function()
+					{
+						if (IsMobilePage())
+							Track("hello-mobile");
+						else
+							Track("hello-desktop");
+
+						// Allows better click simulation on Tap Devices
+						new FastClick(document.body);
+
+						if (__debugMode) 
+						{
+							$("html").css("overflow-y", "auto");
+							$("html").css("overflow-x", "auto");
+
+							 $("#white-halo").remove();
+
+							 setTimeout( function() { $("#lid").hide(); }, 2000);
+							 setTimeout( 
+							 	function() { 
+							 		$("#wrap-back-flap").hide(); 
+							 		$("#wrap-back-shoe").hide(); 
+							 		$("#wrap-front-flap").hide(); 
+							 		$("#wrap-front-shoe").hide(); 
+							 	}, 5000);
+
+
+							 AppendShoeboxSegue(
+							 	
+							 		// SignUpAction 
+							 	
+							 	);
+						}
+
+					}
+				);
+
+			function EndOfPageWasReached()
+			{
+				StartShow();
+			}
+
+		</script>
+
+		<div id="header">
+
+			<div id="header-page">
+				<h1 class="title">Shoeboxify is your shoebox for Facebook</h1>
+				<h2 class="subtitle">A private container to preserve your Facebook photos and posts</h2>
+
+
+				<div id="over-the-fold">
+
+ 					<button class="white" onmouseup="OverFoldWhiteButtonAction()" onclick="OverFoldWhiteButtonAction()">
+						<canvas	class="up" shoe:sprite="sprite-content-white-button-small-up2x"></canvas>
+						<canvas	class="down" shoe:sprite="sprite-content-white-button-small-down2x"></canvas>
+						<div	class="label">Open</div>
+					</button>
+
+
+ 					<button class="more" onmouseup="OverFoldMoreInfoButtonAction()" onclick="OverFoldMoreInfoButtonAction()">
+						<canvas	class="up" shoe:sprite="sprite-content-white-button-small-up2x"></canvas>
+						<canvas	class="down" shoe:sprite="sprite-content-white-button-small-down2x"></canvas>
+						<div	class="label">More info</div>
+					</button>
+
+
+					<button class="yellow" onmouseup="OverFoldYellowButtonAction()"	onclick="OverFoldYellowButtonAction()">
+						<canvas	class="up" shoe:sprite="sprite-content-yellow-button-small-up2x"></canvas>
+						<canvas	class="down" shoe:sprite="sprite-content-yellow-button-small-down2x"></canvas>
+						<div	class="label">Sign up</div>
+					</button>
+
+				
+				</div>
+
+			</div>
+
+			<div id="header-loading">
+				<div class="title">Shoeboxify is your shoebox for Facebook</div>
+				<div class="subtitle" id="header-loading-subtitle" >Loading&hellip;</div>
+			</div>
+		</div>
+
+		<div id="shoebox-stage">
+
+			<div id="progress-indicator-container">
+				<div id="progress-indicator" class="progress-indicator-gray-theme">
+					<div id="progress-track">
+						<div class="label">Loading</div>
+						<div id="progress-bar">
+							<div id="progress-bar-label" class="label">Loading</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ======================= -->
+			<!-- ==== GRAY SHOEBOX  ====  -->
+			<!-- ======================= -->
+
+
+			<div id="shoebox-gray">
+				<div id="white-halo"><div></div></div> 
+				<div id="gray-box"></div>
+				<div id="gray-svg"><div></div></div>
+	 			<div id="gray-loading-sticker"></div>
+			</div>
+
+			<!-- =========================  -->
+			<!-- ===== COLOR SHOEBOX ===== -->
+			<!-- =========================  -->
+
+			<script id="shoebox-color-wrapper" type="text/template">
+
+			<!-- Fonts Lazy Loading -->
+			<link href='http://fonts.googleapis.com/css?family=Gochi+Hand|Delius' rel='stylesheet' type='text/css'>
+
+			<div id="shoebox-color">
+
+				<canvas id="shoebox-shadow" shoe:sprite="sprite-shoebox-shadow"></canvas>
+
+				<!-- ==================== -->
+				<!-- ===== BACK WRAP ==== -->
+				<!-- ====================  -->
+
+				<div id="wrap-back-shoe"><canvas shoe:sprite="sprite-wrap-back-shoe"></canvas></div>
+				<div id="wrap-back-flap"><canvas shoe:sprite="sprite-wrap-back-flap"></canvas></div>
+
+				<!-- ==================== -->
+				<!-- ==== EMPTY BOX ===== -->
+				<!-- ==================== -->
+
+				<canvas id="bottom-box" shoe:sprite="sprite-shoebox-box"></canvas>
+
+				<!-- ==================== -->
+				<!-- ======= LID ======== -->
+				<!-- ==================== -->
+
+				<!-- style="visibility: hidden;" -->
+	 			<div id="lid">
+		 	 		<canvas shoe:sprite="sprite-shoebox-lid"></canvas>
+
+		 	 		<div id="lid-barcode-sticker">
+			 	 		<canvas shoe:sprite="sprite-wrap-barcode-sticker"></canvas>
+
+			 	 		<div class="label">
+							<div class="A">open</div>
+							<div class="B">shoeboxify</div>
+						</div>
+
+			 	 		<canvas id="loading-cover" shoe:sprite="sprite-wrap-loading-sticker"></canvas>
+		 	 		</div>
+
+					<div id="lid-click-area"></div>
+
+		 		</div>
+
+				<!-- ==================== -->
+				<!-- ==== FRONT WRAP ==== -->
+				<!-- ==================== -->
+
+		 		<div id="wrap-front-shoe">
+		 			<canvas shoe:sprite="sprite-wrap-front-shoe"></canvas>
+		 		</div>
+
+		 		<div id="wrap-front-flap">
+		 			<canvas shoe:sprite="sprite-wrap-front-flap"></canvas>
+		 			
+		 			<div id="wrap-center-text">
+		 				an empty shoebox can<br/>
+		 				be used to collect<br/>
+		 				personal photos, love<br/>
+		 				letters and mementos
+		 			</div>
+		 			
+		 			<div id="wrap-bottom-text">
+		 				the shoebox is a metaphor<br/>
+		 				for an intimate container<br/>
+		 				only you have access to
+		 			</div>
+
+		 		</div>
+
+			</div> <!-- color-shoebox -->
+	 		</script>
+
+		</div>
+
+		<script id="box-content-wrapper" type="text/template"> 
+
+		<!-- ======================= -->
+		<!-- === SHOEBOX CONTENT === -->
+		<!-- ======================= -->
+
+			<div id="box-content-all">
+			
+				<div id="box-content" onclick="BoxContentAction()">
+			 	 	<div id="notepad-message">
+				 	 	<canvas id="notepad-paper" shoe:sprite="sprite-content-notepad-message"> </canvas>
+
+				 	 	<div id="notepad-paper-text">			 	 	
+					 	 	<div id="line1">Collect your</div>
+					 	 	<div id="line2">Facebook photos</div>
+					 	 	<div id="line3">and posts in a</div>
+					 	 	<div id="line4">virtual shoebox&hellip;</div>
+							<div id="line6">&hellip;just for you</div>
+						</div>
+<!--
+						<div id="white-signup-button" onmouseup="WhiteSignUpAction()" onclick="WhiteSignUpAction()">
+							<canvas	class="up"		shoe:sprite="sprite-content-white-button-up"></canvas>
+							<canvas	class="down"	shoe:sprite="sprite-content-white-button-down"></canvas>
+							<div	class="label">Sign up</div>
+						</div>
+-->
+
+					</div>
+
+					<!-- Tour Pictures -->
+
+					<!-- <div id="pile"> -->
+
+						<canvas	id="photos-pile-bottom" shoe:sprite="sprite-content-photos-pile-bottom"
+								onmouseup="PhotosPileAction()" onclick="PhotosPileAction()"> </canvas>
+
+						<canvas	id="photo-shadow-A"	shoe:sprite="sprite-lisa-photo-shadow"> </canvas>
+						<canvas	id="photo-shadow-B"	shoe:sprite="sprite-lisa-photo-shadow"> </canvas>
+
+						<canvas	id="lisa-kiss"		shoe:sprite="sprite-lisa-kiss"> </canvas>
+						<canvas	id="lisa-smelling"	shoe:sprite="sprite-lisa-smelling"> </canvas>
+						<canvas	id="lisa-party"		shoe:sprite="sprite-lisa-party"> </canvas>
+						<canvas	id="lisa-yawning"	shoe:sprite="sprite-lisa-yawning"> </canvas>
+					 	<canvas	id="lisa-loser"		shoe:sprite="sprite-lisa-loser"> </canvas>
+
+					 	<canvas	id="photos-pile-top"	shoe:sprite="sprite-content-photos-pile-top"
+					 			onmouseup="PhotosPileAction()" onclick="PhotosPileAction()"> </canvas>
+					<!-- </div> -->
+
+					<!-- Photo Flap -->
+					<div	id="photo-flap-container" 
+							onmouseup="PhotosPileAction()" onclick="PhotosPileAction()">
+						<canvas id="corner-photo"	shoe:sprite="sprite-content-corner-photo"> </canvas>
+						<canvas id="photo-flap-pocket"	shoe:sprite="sprite-content-magic-pocket"> </canvas>
+					</div>
+
+					<div	id="photo-flap-arrow-container"
+							onmouseup="PhotosPileAction()" onclick="PhotosPileAction()">
+						<canvas id="photo-flap-arrow"	shoe:sprite="sprite-content-corner-photo-arrow2x"> </canvas>
+					</div>
+
+				</div> <!-- box-content  -->
+
+
+			 	<div id="pile-balloons" onclick="BalloonsAction()">
+			 		<div id="balloon-nine-oclock">
+						<canvas	shoe:sprite="sprite-lisa-balloon-nine-oclock"> </canvas>
+				 	  	<div id="hello" class="balloon-text">hello!<br/>i&rsquo;m lisa</div>	
+			 		</div>
+
+				 	<div id="balloon-one-oclock">
+						<canvas	shoe:sprite="sprite-lisa-balloon-one-oclock"> </canvas>
+				 	 	<div class="balloon-text">i like to<br/>share my life<br/>on Facebook</div>
+				 	</div>
+
+				 	<div  id="balloon-five-oclock">
+						<canvas	shoe:sprite="sprite-lisa-balloon-five-oclock"></canvas>
+				 	 	<div class="balloon-text">
+
+				 	 		Let me show<br>you how I use<br>shoeboxify
+
+				 	 	</div>
+				 	 	<div class="balloon-click-area"	onclick="BalloonFiveOclockAction()">
+				 	  		<canvas class="balloon-arrow" shoe:sprite="sprite-lisa-forward-arrow2x"></canvas>
+				 	  	</div>
+				 	</div>
+				</div>
+
+			 	<div id="lisa-love-balloon">
+			 		<canvas shoe:sprite="sprite-lisa-balloon-two-oclock"></canvas>
+			 		<div class="balloon-text">
+
+			 			I archive<br>photos of my<br>ex-boyfriend&hellip;<br>time to move on!
+
+			 		</div>
+			 		<div class="balloon-click-area" onclick="LoveBalloonAction()">
+			 			<canvas class="balloon-arrow" shoe:sprite="sprite-lisa-forward-arrow2x"></canvas>
+			 		</div>
+			 	</div>
+			
+			 	<div id="lisa-party-balloon">
+			 		<canvas shoe:sprite="sprite-lisa-balloon-two-oclock"></canvas>
+			 		<div class="balloon-text">
+			 			
+			 			I hide<br>unprofessional<br>photos&hellip; I need<br>a new job now!
+
+			 		</div>
+			 	 	<div class="balloon-click-area" onclick="PartyBalloonAction()">
+			 			<canvas class="balloon-arrow" shoe:sprite="sprite-lisa-forward-arrow2x"></canvas>
+			 		</div>
+			 	</div>
+
+			 	<div id="lisa-loser-balloon">
+			 		<canvas shoe:sprite="sprite-lisa-balloon-two-oclock"></canvas>
+			 		<div class="balloon-text">
+
+			 			I preserve<br>silly shots&hellip;<br>Not so fun to share anymore!
+
+			 		</div>
+
+			 		<div class="balloon-click-area" onclick="LoserBalloonAction()">
+			 			<canvas class="balloon-arrow" shoe:sprite="sprite-lisa-forward-arrow2x"></canvas>
+			 		</div>
+			 	</div>
+
+			 	<div id="lisa-end-balloon">
+					<canvas shoe:sprite="sprite-lisa-balloon-two-oclock"> </canvas>
+					<div class="balloon-text">
+
+						Shoeboxify<br>contains<br>my intimate<br>memories
+
+					</div>
+					<div class="balloon-click-area" onclick="LisaEndBalloonAction()">
+						<canvas class="balloon-arrow" shoe:sprite="sprite-lisa-back-arrow2x"></canvas>
+					</div>
+				</div>
+			</div>	
+				
+		</script>
+
+		<div id="tmp-segue">
+			<div class="label">Loading&hellip;</div>
+		</div>
+
+		<script id="shoebox-segue-wrapper" type="text/template">
+
+		<div id="shoebox-segue">
+			
+			<div id="yellow-button-container">
+				
+				<div id="blue-gradient-bezel">
+					<div id="blue-box-content">
+
+						<div id="blue-box-content-footer">
+							<a class="email-link" onclick="SwitchToEmailSignup()">or use your&nbsp;<span class="underline">email</span></a>
+							<a class="fb-link"	 onclick="SwitchToFacebookSignup()">or use&nbsp;<span class="underline">Facebook</span></a>
+						</div>
+
+						<div id="blue-box-content-center">
+
+							<button id="facebook-button" onclick="FacebookLoginButtonAction()">
+								<canvas class="up"		shoe:sprite="sprite-paper-facebook-button-up2x"></canvas>
+								<canvas class="down"	shoe:sprite="sprite-paper-facebook-button-down2x"></canvas>
+								<div class="label">Facebook Login</div>
+							</button>
+							
+							<form class="email-tab" action="javascript:void(0)" method="post" onsubmit="EmailSignUpSubmitAction(event)">
+								<input class="text-field" type="email"	name="email" placeholder="Your email&hellip;" value="" required />	
+								
+								<button class="button" type="submit" disabled="disabled">
+									<div class="label">Sign up</div>
+								</button>
+
+							</form>
+			
+							<div class="spinner-tab">
+								<div id="spinner"></div>
+							</div>
+
+							<div class="message-tab">
+								Lorem ipsum color sit amet
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+				<button id="yellow-button"	onmouseup="MainButtonSignUpAction()"	onclick="MainButtonSignUpAction()">
+					<canvas	class="up"		shoe:sprite="sprite-paper-yellow-button-up2x"></canvas>
+					<canvas	class="down"	shoe:sprite="sprite-paper-yellow-button-down2x"></canvas>
+					<div	class="label">Sign up for our launch</div>
+				</button>
+
+			</div> <!-- yellow-button-container END -->
+
+			<div id="cardboard">
+
+				<div id="paper-cardboard-frame">
+					<canvas id="paper-cardboard" shoe:sprite="sprite-paper-cardboard"></canvas>
+				</div>
+
+				<!-- FOOTER -->
+				<!-- AddThis seems to messup the layout if we add it at the bottom -->
+
+				<ul id="cartboard-extra-footer">
+					<li class="privacy"><a onmouseup="PrivacyAction(this)" onclick="PrivacyAction(this)">Privacy</a></li>
+					<li class="terms"><a onmouseup="TermsAction(this)"	onclick="TermsAction(this)">Terms</a></li>
+					<li class="jobs"><a onmouseup="JobsAction(this)"	onclick="JobsAction(this)">Jobs</a></li>
+				</ul>
+
+				<div id="partner-container">
+					<a href="https://mixpanel.com/f/partner"><img src="https://cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" /></a>
+				</div>
+
+				<!-- SHOE STICKER -->
+
+				<div class="paper-shoe-sticker-container">
+					<div id="paper-shoe-sticker">
+
+						<div class="white-paper-sticker">
+							<canvas shoe:sprite="sprite-paper-white-paper"></canvas>
+						</div>
+
+						<div class="sticker-logo">
+							<canvas shoe:sprite="sprite-paper-shoe2x"></canvas>
+						</div>
+
+						<ul>
+
+							<!-- ================== About -->
+
+							<li id="about" class="label-disabled">
+
+								<div class="highlight">
+									<canvas shoe:sprite="sprite-paper-row_highlight2x"></canvas>
+								</div>
+
+								<a onclick="AboutAction(this)">
+									<div class="status">
+										<div class="arrow"><canvas shoe:sprite="sprite-paper-arrow2x"></canvas></div>
+										<div class="check"><canvas shoe:sprite="sprite-paper-check2x"></canvas></div>
+									</div>
+
+									about
+
+								</a>
+							</li> <!-- about end -->
+
+
+							<!-- ================== Story -->
+
+							<li id="story" class="label-disabled">
+
+								<div class="highlight">
+									<canvas shoe:sprite="sprite-paper-row_highlight2x"></canvas>
+								</div>
+								
+								<a onclick="StoryAction(this)">	
+									<div class="status">										
+										<div class="arrow"><canvas shoe:sprite="sprite-paper-arrow2x"></canvas></div>
+										<div class="check"><canvas shoe:sprite="sprite-paper-check2x"></canvas></div>
+									</div>
+									
+									story
+
+								</a>
+							</li> <!-- story end -->
+
+
+							<!-- ================== Feedback -->
+
+							<li id="feedback" class="label-disabled">
+
+								<div class="highlight">
+									<canvas shoe:sprite="sprite-paper-row_highlight2x"></canvas>
+								</div>
+
+								<a onclick="FeedbackAction(this)">
+									<div class="status">
+										<div class="arrow"><canvas shoe:sprite="sprite-paper-arrow2x"></canvas></div>
+										<div class="check"><canvas shoe:sprite="sprite-paper-check2x"></canvas></div>
+									</div>
+
+									talk to us
+
+								</a>
+							</li> <!-- feedback end -->
+
+						</ul>
+
+					</div>
+
+				</div>
+
+				<!-- BARCODE STICKER -->
+
+				<div id="paper-barcode-sticker-container">
+
+					<div id="paper-barcode-sticker">
+						
+						<div class="white-paper-sticker">
+							<canvas shoe:sprite="sprite-paper-white-paper"></canvas>
+						</div>
+
+						<div class="sticker-logo">
+							<canvas shoe:sprite="sprite-paper-barcode2x"></canvas>
+						</div>
+
+						<a id="recycle" onclick="ShareAction(this)">
+							<canvas shoe:sprite="sprite-paper-recycle2x"></canvas>
+						</a>
+
+						<div id="barcode-label">
+							
+							<a class="share" onclick="ShareAction(this)">share</a>
+							
+							<div class="fb-sandbox">
+								<div	class="fb-like"
+										data-href="https://www.facebook.com/shoeboxify"
+										data-send="false"
+										data-layout="button_count"
+										data-width="165"
+										data-show-faces="false">
+								</div>
+							</div>
+
+						</div>
+
+
+					</div>
+				
+				</div>
+	
+
+			</div> <!-- cardboard end -->
+
+
+			<!-- MOBILE START -->
+
+			<div id="cardboard-mobile">
+
+				<div class="container">
+					<canvas class="background" shoe:sprite="sprite-paper-white-paper"></canvas>
+				</div>
+
+				<div class="paper-shoe-sticker-container"></div>
+			</div>
+
+			<div id="subcontent-mobile"></div>
+
+
+			<div id="cardboard-mobile-2">
+
+				<div class="container">
+					<canvas class="background" shoe:sprite="sprite-paper-cardboard"></canvas>
+				</div>
+
+				<div id="barcode-mobile-container"></div>
+
+				<ul id="mobile-extra-footer"></ul>
+
+			</div>
+
+
+
+			<!-- MOBILE END -->
+
+
+			<div id="subcontent">
+
+				<div id="subcontent-body">
+
+					<div id="subcontent-cut-lines">
+						<div id="left-line"  class="vertical-dashes"></div>
+						<div id="right-line" class="vertical-dashes"></div>
+
+
+						<div id="top-line-left" class="horizontal-dashes"></div>
+						<div id="scissors">
+							<canvas shoe:sprite="sprite-paper-scissors"></canvas>
+						</div>
+						<div id="top-line-right" class="horizontal-dashes"></div>
+
+
+						<div id="bottom-line-left"  class="horizontal-dashes"></div>
+						<div id="up-arrow" onclick="UpArrowAction()">
+							<canvas shoe:sprite="sprite-paper-up-arrow"></canvas>
+						</div>
+						<div id="bottom-line-right" class="horizontal-dashes"></div>
+						
+					</div>
+
+					<div id="subcontent-title">
+						Lorem ipsum title
+					</div>
+
+					<div id="subcontent-message">
+						Lorem ipsum color sit amet
+					</div>
+
+
+				</div>
+
+			</div>
+
+		</div>
+		
+		</script> 
+
+ 		<div id="designed-and-made" class="footer-gray designed-and-made-desktop">
+			<div class="designed">Designed in San Francisco</div>
+			<div class="made">Shoebox made in Italy</div>
+		</div>
+
+
+		<!-- SVG GRAY SHOEBOX -->
+
+		<script id="shoebox-gray-wrapper" type="text/template">
+			<svg	version="1.1" xmlns="http://www.w3.org/2000/svg" 
+					xmlns:xlink="http://www.w3.org/1999/xlink"
+					x="0px" y="0px" width="740px"	height="480px" viewBox="0 0 740 480" 
+					enable-background="new 0 0 740 480" xml:space="preserve">
+				<g>
+					<path fill="#666666" d="M635,415H135c0,0-10,7-10,14c64,2,183,3,259,3c92,0,150-1,258-3
+						C642,416,635,415,635,415z"/>
+				</g>
+				<g>
+					<path fill="#999999" d="M43,392c0,0,58.171,27.586,61,29c6,3,18,8,24,8s111.648,1,253,1
+						c111.29,0,256.238-1,258-1c4,0,7-2,13-6c1.177-0.784,25-14,29-17s19-14,19-14H43z"/>
+					<path fill="#1A1A1A" d="M708,387c-5,0-666-1-675-1c-1,7,37,21,45,24
+						c3.459,1.297,243.744,4,300.131,4c101.697,0,292.961-1.711,299.869-5C699,399,708,392,708,387z"/>
+					<path fill="#333333" d="M52,398c-12-7-19-8-19-12c16,0,325,0,325,0s325,0,350,0c-3,9-8,9-21,17
+						c-6,3-1,1-12,4c-36,4-215,5-318,5s-274.278-2.684-282-5C65,404,65,403,52,398z"/>
+					<path fill="#666666" d="M38,10.059c-4,0-5,1-5,6c0,2.169-2,109.352-2,207c0,82.395,1,133,1,133s1,22,1,30
+						c9,5,668,1,671,1s4-1,4-3c0-0.506-1-20-1-24c0-29,0-118.15,0-207c0-81.049,0-139.113,0-140c0-2-1-4-4-4c-5,0-146.324-2.468-301-2
+						C227.045,7.587,81,9.059,38,10.059z"/>
+				</g>
+				<g opacity="0.9">
+					<path fill="#FFFFFF" d="M73,50c0,3.625-1,79.52-1,81c0,1,0,2,1,2c1.277,0,227.641-1,230-1c0,0,1,0,1-1c0-2.359,0-79.64,0-82
+						c0,0,0-1-1-1c-1.359,0-225.641,1-229,1C73,49,73,50,73,50z M235.126,105.014c-18.328,4.352-92.245,0.347-95.594-0.174
+						c-3.348-0.518-4.229-4.698-4.229-4.698S136.538,94.611,142,92c5.464-2.612,13.113-5.007,15.994-5.392
+						c6.521-0.869,32.076-16.539,32.076-16.539s2.643-2.784,5.283-2.958c1.94,0,3.525,5.048,5.64,6.79
+						c2.114,1.739,8.989,4.874,14.805,4.874c5.816,0,11.811-8.357,13.394-8.357c1.589,0,4.524,1.046,6.467,11.664
+						c1.939,10.62-0.708,19.278-0.708,19.278S236.361,103.271,235.126,105.014z"/>
+				</g>
+			</svg>
+		</script>
+
+		<!-- === SHOEBOXIFY === Story Text === -->
+
+		<script id="story-text-wrapper" type="text/template">
+			<div id="story-text">
+
+				<img class="story-img" src="images/shoebox_pencil.png"></img>
+
+				<div class="story">
+					<p>I met Sara at a party in my home town in the northern part of Italy. I had just started my last year in high school and she was my first love.</p>
+
+					<p>We dated for about a year, until we both left to go to college.  The day we parted, I remember walking into my bedroom and I couldn&rsquo;t help but noticing all things that reminded me of her: an empty perfume bottle she left on the table, our love letters stacked on my bookshelf, and especially the many photos of us hanging on the wall.</p>
+				</div>
+
+				<div class="focus">
+					This was the year 2000, digital cameras had not gone mainstream and Facebook was almost a decade away. All artifacts of our love story were items I could touch.
+				</div>
+
+				<div class="story">
+					<p>A few weeks after Sara and I parted, I realized I needed to do something with the photos and all the other things which reminded me of her. I wanted to move on, but I was torn on what to do. I didn&rsquo;t want to throw them away, but I certainly didn&rsquo;t want to see them everyday. I wanted to find a way to respect and preserve this important phase in my life.</p>
+					<p>Incidentally, I had just bought a pair of new sneakers. I told myself I would run more regularly now that I had more free time. The new shoes came in a cardboard box whose top was of a warm red color.</p>
+					<p>This empty shoebox became the container of all the mementos of my love story with Sara. Once I finished putting things in it,  I closed the shoebox and placed it under my bed where it still is to this day.</p>
+				</div>
+
+				<div id="shoebox-empty">
+					<img class="story-img" src="images/shoebox_empty.png"></img>
+					<div>An empty shoebox</div>
+				</div>
+
+				<div class="focus">
+					An empty shoebox can be used to collected personal photos, love letters and mementos. It offers a way to preserve your past. It is a way to archive a phase in your life and show respect for it, while acknowledging it is over.
+				</div>
+
+				<div class="story">
+					<p>Ten years after that first shoebox, I found myself in a similar situation. My life was completely different though. I was a young professional who lived in San Francisco and worked at Apple as a software engineer.</p>
+					<p>I started using Facebook in college when it became popular. My girlfriend at the time, Elizabeth, regularly uploaded photos of our adventures on Facebook. When we broke up after more than four year together it was really tough. This time I couldn&rsquo;t really put together a shoebox because the vast majority of our photos and letters were in digital form and Facebook held the best representation of them.</p>
+				</div>
+
+				<div class="focus">
+					In 2010 most of the pictures and communications between my girlfriend and I were in digital form. Facebook held a significant portion of it. Moreover because most of the photos were in Elizabeth&rsquo;s Facebook account, I couldn&rsquo;t hide them or keep them just for me. It wasn&rsquo;t only a privacy problem. It was about my feelings. 
+				</div>
+
+				<img class="story-img" src="images/shoebox.png"></img>
+
+				<div class="story">
+					<p>I want a shoebox for Facebook. A place just for me where I can collect the digital artifacts of my life on Facebook. It isn&rsquo;t only because of my past relationships. As time passes I feel my past memories become more and more of an important asset. 
+					 I want a better way to organize them and keep them just for me.</p>
+					<p>So I decided to leave my job at Apple to build a service to accomplish that. Shoeboxify was born.</p>
+				</div>
+
+			</div>
+		</script>
+
+
+		<!-- === SHOEBOXIFY === About Text === -->
+
+		<script id="about-text-wrapper" type="text/template">
+			<div id="about-text">
+
+				<p>
+					We have been sharing our lives on Facebook for several years now. We shared pictures of our boyfriends and girlfriends, our fun college years, and perhaps even our first child.	
+					Facebook collects so many meaningful photos and stories about our lives, but usually they are buried by noise in the form of YouTube videos, advertisements and updates from people no longer active in our lives.
+				</p>
+
+				<p>
+					Sharing our lives on Facebook is great, however as time goes by our past online memories become more personal and relevant just for ourselves. Our high school sweetheart is not our current partner. The photos of our college parties might not seem that much fun as we look for a new job. Our spiritual journeys are part of who we are today, but they don&rsquo;t represent us anymore.
+				</p>
+
+				<p class="highlight">
+					Shoeboxify is about finding a safe and private container for our feelings. Shoeboxify is not only about privacy, it is also about organizing our photos and post away from the noise of Facebook.
+				</p>
+
+				<div id="makers">
+
+					<div id="makers-separator"></div>
+
+					<p>
+						Shoeboxify is designed and engineered by <a href="javascript:GiovanniDonelli()">Giovanni Donelli</a> in San Francisco, CA.
+						<br>
+						Significant contributors to Shoeboxify are: Joel Sadler (Design), Michelle Sun (Product Manager), Matthieu Daveau (Product), Marta Fioni (Marketing), Andrea Forni (Advisor), Erik Anderson (Photography), Caroline Parsons (Lisa).
+					</p>
+
+				</div>
+
+			</div>
+		</script>
+
+
+		<!-- === SHOEBOXIFY === Feedback Text === -->
+
+		<script id="feedback-text-wrapper" type="text/template">
+			<div id="feedback-text">
+				<p>We would love to hear from you. Your ideas will have a direct impact since we are still designing and building Shoeboxify</p>
+				
+				<p>The be best way to get in touch with us is by sending a message to Shoeboxify&rsquo;s Facebook Page.</p>
+
+				<div class="button" onclick="SendMessageToShoeboxify()">
+					<div>Send message to<br>Shoeboxify on Facebook</div>
+				</div>
+
+				<p  class="alternatively">If you prefer email instead, you can use <a id="feedback-email" href="javascript:SendEmailToShoeboxify('feedback')"></a></p>
+			</div>
+		</script>
+
+
+		<!-- === SHOEBOXIFY === Privacy Text === -->
+
+		<script id="privacy-text-wrapper" type="text/template">
+			<div id="privacy-text">	
+				<p>When you signup using the Facebook Connect we collect the following information about you: email, Facebook ID, Facebook username, gender, first and last name. When you signup with your email, your email is the only informaton we collect about you.</p>
+				
+				<p>At any time you can email support[at]shoeboxify[dot]com to have your account information permanently removed from Shoeboxify.</p>
+
+				<p>We use the informaton we have about you for internal purposes, such as to provide you with the site and services as well as communicate with you about Shoeboxify. We absolutely do not provide your email to any third-party or advertiser.</p>
+
+				<p>We also contract with third-party service providers to host our servers and databases and to provide other services to us. We require our service providers to agree not to access or use any information or data they may have access to while providing services to Shoeboxify other than as specified by us.</p>
+
+				<p>We also track usage statistics on our site, in order to provide better quality of service and we may sometimes share that data in aggregate. We make use of third-party software to do so.</p>
+
+				<p>We also use cookies (a snipped of text saved on your device) to track usage and how you interact with Shoeboxify. You can reset your Web browser to refuse all cookies or to indicate when a cookie is being sent.</p>
+			</div>
+		</script>
+
+		<!-- === SHOEBOXIFY === Terms Text === -->
+
+		<script id="terms-text-wrapper" type="text/template">
+			<div id="terms-text">
+				The terms of service will be available upon Shoeboxify launch.
+			</div>
+		</script>
+
+		<!-- === SHOEBOXIFY === Jobs Text === -->
+
+		<script id="jobs-text-wrapper" type="text/template">
+			<div id="jobs-text">
+				<p>We are a software and design company, however most importantly Shoeboxify is about redefining how we deal with human <span class="art">feelings</span> in the digital social era we live in.</p>
+
+				<p>Although engineering and design are a critical and fundamental asset of Shoeboxify, they are just the veneer.</p>
+
+				<p>Shoeboxify is about human <span class="art">feelings</span> and self expression. This is generally a job associated with <span class="art">Art</span>. We don&rsquo;t want to compete with the hacker and engineering driven culture of Facebook. We refer to <span class="art">Art</span> not only to talk about <span class="art">aesthetics</span>. We define <span class="art">Art</span> as a form of self expression that questions the status quo.</p>
+
+				<p>Shoeboxify needs <span class="art">Artists</span>.</p>
+
+				<p>In addition to being an <span class="art">Artist</span>, you should be proficient with internet technologies and know how to write software. Shoeboxify is built on top of Amazon technologies, Node.js, HTML5 and others. Proficiency in either Android or iOS would also be nice.</p>
+
+				<p>If you are interested in being part of Shoeboxify, reach out to us. To start the conversation, send a message to our <a href="http://www.facebook.com/shoeboxify" target="_blank">Facebook page</a> and introduce yourself. If you prefer email, you can use <a id="jobs-email" href="javascript:SendEmailToShoeboxify('jobs')"></a></p>
+			</div>
+		</script>
+
+		<script>
+			EndOfPageWasReached();
+		</script>
+		
+		<!-- Facebook SDK -->
+		<div id="fb-root"></div>
+
+	</body>
+
+</html>
